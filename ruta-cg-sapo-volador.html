@@ -1,0 +1,579 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Ruta CG del Sapo Volador</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#eef1f6;
+    --surface:#ffffff;
+    --surface-2:#e4e9f2;
+    --surface-3:#d7deea;
+    --border:#c3cbda;
+    --text:#161c29;
+    --text-dim:#5b6478;
+    --accent:#c46812;
+    --accent-soft:#f0ddc4;
+    --accent-2:#0e8f86;
+    --good:#1c8a4b;
+    --good-soft:#dcf2e3;
+    --warn:#b23b3b;
+    --warn-soft:#f6dede;
+    --shadow: 0 1px 2px rgba(20,25,40,.06), 0 8px 24px -12px rgba(20,25,40,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0a0d14;
+      --surface:#121722;
+      --surface-2:#1a2130;
+      --surface-3:#232c3f;
+      --border:#2b3548;
+      --text:#e8ecf4;
+      --text-dim:#8b93a9;
+      --accent:#ffb454;
+      --accent-soft:#3a2c17;
+      --accent-2:#5fd9cc;
+      --good:#6bd88f;
+      --good-soft:#173226;
+      --warn:#ff8686;
+      --warn-soft:#3a1d1d;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0a0d14;
+    --surface:#121722;
+    --surface-2:#1a2130;
+    --surface-3:#232c3f;
+    --border:#2b3548;
+    --text:#e8ecf4;
+    --text-dim:#8b93a9;
+    --accent:#ffb454;
+    --accent-soft:#3a2c17;
+    --accent-2:#5fd9cc;
+    --good:#6bd88f;
+    --good-soft:#173226;
+    --warn:#ff8686;
+    --warn-soft:#3a1d1d;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  html{color-scheme:light dark;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    padding-inline:20px;
+    padding-block:28px 60px;
+  }
+  .wrap{max-width:1180px;margin-inline:auto;display:flex;flex-direction:column;gap:22px;}
+
+  h1,h2,h3{font-family:'Rajdhani',system-ui,sans-serif;font-weight:700;letter-spacing:.01em;text-wrap:balance;margin:0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;}
+
+  /* header */
+  header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;
+    border-bottom:1px solid var(--border);padding-bottom:18px;}
+  header h1{font-size:clamp(1.6rem,3.4vw,2.3rem);}
+  header .sub{color:var(--text-dim);font-size:.95rem;margin-top:4px;}
+  .cg-tag{
+    display:flex;align-items:center;gap:8px;
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;
+    padding:8px 14px;box-shadow:var(--shadow);font-size:.85rem;color:var(--text-dim);
+  }
+  .cg-tag b{color:var(--text);font-weight:600;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px var(--good-soft);}
+
+  /* panels row: ship + cg params */
+  .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+  .panel{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:16px 18px;box-shadow:var(--shadow);
+  }
+  .panel h3{font-size:1rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;margin-bottom:10px;}
+  .kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:.9rem;border-bottom:1px dashed var(--border);}
+  .kv:last-child{border-bottom:none;}
+  .kv span:first-child{color:var(--text-dim);}
+  .kv span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:500;}
+  .field-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0;}
+  .field-row label{font-size:.9rem;color:var(--text-dim);}
+  .field-row input{
+    width:110px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:.9rem;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:6px;color:var(--text);
+    padding:4px 8px;
+  }
+  .field-row input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .note{font-size:.78rem;color:var(--text-dim);margin-top:8px;line-height:1.4;}
+
+  /* hero winner card */
+  .winner{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg,var(--surface) 0%,var(--surface-2) 100%);
+    border:1px solid var(--border);border-radius:16px;padding:22px 26px;box-shadow:var(--shadow);
+    display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+  }
+  .winner::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(600px 200px at 0% 0%, var(--accent-soft), transparent 60%);
+    opacity:.9;
+  }
+  .winner > *{position:relative;}
+  .winner-id{display:flex;flex-direction:column;gap:4px;min-width:220px;}
+  .winner-id .eyebrow{color:var(--accent-2);}
+  .winner-id .name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2rem;line-height:1;}
+  .winner-id .route{color:var(--text-dim);font-size:.92rem;}
+  .winner-stat{text-align:right;}
+  .winner-stat .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--accent);font-variant-numeric:tabular-nums;}
+  .winner-stat .lbl{font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;}
+  .winner-extra{display:flex;gap:22px;flex-wrap:wrap;}
+  .winner-extra div{text-align:right;}
+  .winner-extra .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.15rem;}
+  .winner-extra .lbl{font-size:.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;}
+
+  /* table */
+  .table-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;}
+  .table-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px;}
+  .table-head h2{font-size:1.15rem;}
+  .actions{display:flex;gap:8px;}
+  button{
+    font-family:'IBM Plex Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;
+    border-radius:7px;padding:7px 12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);
+  }
+  button:hover{border-color:var(--accent);color:var(--accent);}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#1a1002;}
+  button.primary:hover{filter:brightness(1.08);color:#1a1002;}
+  .scroll{overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;min-width:1300px;table-layout:fixed;}
+  thead th{
+    text-align:right;font-family:'IBM Plex Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--text-dim);font-weight:500;padding:9px 10px;border-bottom:1px solid var(--border);
+    white-space:normal;line-height:1.25;vertical-align:bottom;
+  }
+  thead th:first-child, thead th:nth-child(2), thead th:nth-child(3){text-align:left;}
+  thead th:nth-child(1){width:8%;} thead th:nth-child(2){width:16%;} thead th:nth-child(3){width:12%;}
+  thead th:nth-child(4){width:7%;} thead th:nth-child(5){width:6%;} thead th:nth-child(6){width:7%;}
+  thead th:nth-child(7){width:7%;} thead th:nth-child(8){width:7%;} thead th:nth-child(9){width:6%;}
+  thead th:nth-child(10){width:8%;} thead th:nth-child(11){width:5%;} thead th:nth-child(12){width:8%;}
+  thead th:nth-child(13){width:3%;}
+  tbody td{padding:7px 10px;border-bottom:1px solid var(--border);font-size:.86rem;text-align:right;overflow:hidden;}
+  tbody td:first-child, tbody td:nth-child(2), tbody td:nth-child(3){text-align:left;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr.best{background:var(--accent-soft);}
+  tbody tr.nonviable{opacity:.5;}
+  tbody tr:hover{background:var(--surface-2);}
+  td input{
+    width:100%;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+    background:transparent;border:1px solid transparent;border-radius:5px;color:var(--text);padding:3px 5px;
+  }
+  td input:hover{border-color:var(--border);}
+  td input:focus{outline:none;border-color:var(--accent);background:var(--surface-2);}
+  td.name-cell{white-space:nowrap;}
+  td.name-cell input{text-align:left;font-family:'IBM Plex Sans',sans-serif;font-weight:600;width:auto;max-width:100px;}
+  td.station-cell input{text-align:left;font-family:'IBM Plex Sans',sans-serif;}
+  td.system-cell{white-space:nowrap;}
+  .sys-wrap{display:flex;align-items:center;gap:4px;}
+  .sys-wrap input{text-align:left;font-family:'IBM Plex Sans',sans-serif;color:var(--text-dim);font-size:.82rem;min-width:0;flex:1 1 auto;}
+  .copy-btn{
+    flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;padding:0;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:5px;color:var(--text-dim);cursor:pointer;
+  }
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent);}
+  .copy-btn.copied{color:var(--good);border-color:var(--good);}
+  .copy-btn svg{width:12px;height:12px;pointer-events:none;}
+  td.dist-cell{white-space:nowrap;}
+  td.supply-cell{white-space:normal;}
+  .supply-tag{display:block;margin-top:2px;}
+  .rank{
+    display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;flex:none;
+    background:var(--surface-3);color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:.7rem;margin-right:6px;
+  }
+  td.name-cell{display:table-cell;}
+  td.name-cell > *{vertical-align:middle;}
+  tr.best .rank{background:var(--accent);color:#1a1002;}
+  .profit-per-hour{font-weight:600;color:var(--good);}
+  .tag{font-size:.68rem;padding:2px 7px;border-radius:99px;font-family:'IBM Plex Mono',monospace;white-space:nowrap;display:inline-block;}
+  .tag.same{background:var(--good-soft);color:var(--good);}
+  .tag.jump{background:var(--surface-3);color:var(--text-dim);}
+  .tag.low{background:var(--warn-soft);color:var(--warn);}
+  .rm-btn{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.9rem;padding:2px 6px;}
+  .rm-btn:hover{color:var(--warn);}
+
+  footer{color:var(--text-dim);font-size:.82rem;line-height:1.6;border-top:1px solid var(--border);padding-top:16px;}
+  footer b{color:var(--text);}
+  footer ol{margin:8px 0 0;padding-left:20px;}
+
+  @media (max-width:640px){
+    table{min-width:900px;}
+    .winner{flex-direction:column;align-items:flex-start;}
+    .winner-stat{text-align:left;}
+    .winner-extra{justify-content:flex-start;}
+    .winner-extra div{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="eyebrow">Calculadora de ruta &mdash; Community Goal</div>
+      <h1>Ruta óptima para el Sapo Volador</h1>
+      <div class="sub">Panther Clipper Mk II &middot; entrega en la estación de la CG</div>
+    </div>
+    <div class="cg-tag"><span class="dot"></span> <span><b>Wreaken Calls for Sourced Materials</b> &middot; Metz Enterprise, Ega &middot; hasta <span id="cgHeaderMult" class="mono">×3</span> al vender</span></div>
+  </header>
+
+  <div class="panels">
+    <div class="panel">
+      <h3>Nave</h3>
+      <div class="field-row"><label for="cargoCap">Capacidad de carga (t)</label><input id="cargoCap" type="number" value="1148"></div>
+      <div class="kv"><span>Atraque</span><span>Solo Large Pad</span></div>
+      <div class="kv"><span>Salto (lleno / vacío)</span><span>20.81 / 35.61 LY</span></div>
+      <div class="note">1.148 t = 2 bahías MkII (384+192) + 8E/7E/6E‑ing./5E‑ing.×2/4E. Cambia el valor si repotencias la nave.</div>
+    </div>
+    <div class="panel">
+      <h3>Community Goal activa</h3>
+      <div class="field-row"><label for="cgStation">Estación de entrega</label><input id="cgStation" type="text" value="Metz Enterprise" style="text-align:left;width:160px;"></div>
+      <div class="field-row"><label for="cgSystem">Sistema</label><input id="cgSystem" type="text" value="Ega" style="text-align:left;width:160px;"></div>
+      <div class="field-row"><label for="cgMult">Multiplicador venta</label><input id="cgMult" type="text" value="×3"></div>
+      <div class="note">El multiplicador ya está aplicado en la columna "Venta en CG" de la tabla &mdash; cópialo directamente de Inara (modo "I want to sell", sistema de referencia = el de la CG).</div>
+    </div>
+    <div class="panel">
+      <h3>Cómo se calcula</h3>
+      <div class="kv"><span>Beneficio/unidad</span><span>Venta − Compra</span></div>
+      <div class="kv"><span>Carga por viaje</span><span>mín(capacidad, oferta)</span></div>
+      <div class="kv"><span>Cr/hora</span><span>Beneficio viaje ÷ tiempo</span></div>
+      <div class="note">El tiempo de viaje es una <b>estimación editable</b> por fila (minutos ida y vuelta). Ajusta con tus tiempos reales de la rueda de ruta para mayor precisión.</div>
+      <div class="note">Solo se consideran <b>Starports fijos en órbita</b> (Coriolis/Orbis/Ocellus/Dodec) &mdash; se excluyen a propósito los Surface Ports y Settlements de superficie (Odyssey) porque el Sapo Volador no debería aterrizar en un planeta, y también se excluyen Megaships y Fleet Carriers por ser estaciones móviles que pueden desaparecer o cambiar de sistema.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="border-color:var(--warn);">
+    <h3 style="color:var(--warn);">⚠ Antes de volar</h3>
+    <div class="note" style="margin-top:0;font-size:.85rem;">Los mercados de Elite Dangerous cambian en vivo: una estación puede agotar su stock o dejar de vender un material de un momento a otro (esto ya nos pasó con Palladium en Hell Landing). Antes de salir hacia la estación de compra de la fila ganadora, vuelve a comprobar su oferta actual en Inara &mdash; los datos de esta tabla son una foto fija del momento en que se consultaron.</div>
+  </div>
+
+  <div class="winner" id="winnerCard"><!-- filled by JS --></div>
+
+  <div class="table-card">
+    <div class="table-head">
+      <h2>Comparativa de los 12 materiales</h2>
+      <div class="actions">
+        <button id="addRowBtn">+ Añadir material</button>
+        <button id="resetBtn">Restablecer datos de esta CG</button>
+      </div>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Estación de compra</th>
+            <th>Sistema</th>
+            <th>Distancia</th>
+            <th>Oferta</th>
+            <th>Compra (Cr)</th>
+            <th>Venta CG (Cr)</th>
+            <th>Beneficio/u</th>
+            <th>Carga a llevar</th>
+            <th>Beneficio/viaje</th>
+            <th>Viaje (min)</th>
+            <th>Cr / hora</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"><!-- filled by JS --></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <b>Para la próxima CG:</b> solo tienes que cambiar los datos de esta tabla &mdash; no hace falta tocar nada más.
+    <ol>
+      <li>Actualiza estación/sistema/multiplicador del panel "Community Goal activa".</li>
+      <li>En Inara → Commodity search → <i>"I want to sell"</i>, sistema de referencia = el de la nueva CG, pad mínimo = Large → apunta el precio de la estación de la CG para cada material (columna "Venta CG").</li>
+      <li>Repite con <i>"I want to buy"</i>, ordenado por distancia, y elige la estación más cercana con oferta ≥ tu capacidad de carga (columna "Compra").</li>
+      <li>Ajusta minutos de viaje reales por fila si los conoces &mdash; si no, deja la estimación (~20‑28 min con un solo salto, ~35‑40 min si la distancia supera el alcance con la carga llena y hacen falta 2 saltos).</li>
+      <li>La fila ganadora (Cr/hora más alto) se resalta sola y arriba se resume la mejor ruta.</li>
+    </ol>
+    <p style="margin-top:10px;">Datos de precios: Inara.cz (commodity search, filtrado a Large Pad, 11 Sep 2026). Capacidad de carga y alcance de salto verificados con Coriolis a partir del build de tu Panther Clipper Mk II.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "cg-route-panther-v4";
+
+  var DEFAULT_DATA = {
+    cargoCap: 1148,
+    cgStation: "Metz Enterprise",
+    cgSystem: "Ega",
+    cgMult: "×3",
+    rows: [
+      {name:"Palladium",   station:"Scott Horizons", system:"Scorpii Sector IH-V B2-8", distLy:24.22,  sameSystem:false, supply:418,  buy:48678, sell:151068, tripMin:38},
+      {name:"Gold",        station:"Porsche Terminal", system:"Scorpii Sector IH-V B2-3", distLy:19.19, sameSystem:false, supply:542, buy:45328, sell:141339, tripMin:27},
+      {name:"Silver",      station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:102986, buy:34915, sell:109659, tripMin:24},
+      {name:"Bertrandite", station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:651738, buy:16331, sell:54630, tripMin:24},
+      {name:"Gallite",     station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:775343, buy:10206, sell:34671, tripMin:24},
+      {name:"Indite",      station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:179790, buy:9590,  sell:33132, tripMin:24},
+      {name:"Coltan",      station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:258448, buy:4786, sell:17901, tripMin:24},
+      {name:"Cobalt",      station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:758494, buy:3196, sell:10638, tripMin:24},
+      {name:"Uraninite",   station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:370817, buy:2063, sell:8583, tripMin:24},
+      {name:"Rutile",      station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:199455, buy:1480, sell:6069, tripMin:24},
+      {name:"Lepidolite",  station:"Warhol City", system:"Scorpii Sector EB-X B1-3", distLy:13.27, sameSystem:false, supply:2123765, buy:397, sell:2223, tripMin:24},
+      {name:"Water",       station:"(ninguna rentable)", system:"—", distLy:0, sameSystem:false, supply:0, buy:0, sell:0, tripMin:12}
+    ]
+  };
+
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        var parsed = JSON.parse(raw);
+        if(parsed && Array.isArray(parsed.rows) && parsed.rows.length) return parsed;
+      }
+    }catch(e){}
+    return JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
+
+  function saveState(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  var state = loadState();
+
+  var fmt = new Intl.NumberFormat('es-ES', {maximumFractionDigits:0});
+  function cr(n){ return isFinite(n) ? fmt.format(Math.round(n)) + " Cr" : "—"; }
+  function num(n){ return isFinite(n) ? fmt.format(Math.round(n)) : "—"; }
+
+  var tbody = document.getElementById('tbody');
+  var winnerCard = document.getElementById('winnerCard');
+  var cargoInput = document.getElementById('cargoCap');
+
+  var COPY_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5.5" y="5.5" width="8.5" height="8.5" rx="1.3"/><path d="M3.5 10.5h-1a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>';
+  var CHECK_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5l3 3 7-7"/></svg>';
+
+  function copyToClipboard(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text).catch(function(){ return legacyCopy(text); });
+    }
+    return legacyCopy(text);
+  }
+  function legacyCopy(text){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }catch(e){ return Promise.reject(e); }
+  }
+
+  function computeRow(r){
+    var cargoCap = parseFloat(cargoInput.value) || 0;
+    var load = Math.max(0, Math.min(cargoCap, r.supply || 0));
+    var profitUnit = (r.sell||0) - (r.buy||0);
+    var tripProfit = profitUnit * load;
+    var hours = (r.tripMin||0) / 60;
+    var perHour = hours > 0 ? tripProfit / hours : 0;
+    var viable = load >= cargoCap * 0.5 && profitUnit > 0; // needs to cover at least half a load to be meaningful
+    return {load:load, profitUnit:profitUnit, tripProfit:tripProfit, perHour:perHour, viable:viable};
+  }
+
+  function escapeHtml(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function bestIndex(){
+    var best = -1, bestVal = -Infinity;
+    state.rows.forEach(function(r, i){
+      var c = computeRow(r);
+      if(c.viable && c.perHour > bestVal){ bestVal = c.perHour; best = i; }
+    });
+    return best;
+  }
+
+  function updateWinner(bestIdx){
+    if(bestIdx>=0){
+      var r = state.rows[bestIdx], c = computeRow(r);
+      winnerCard.innerHTML =
+        '<div class="winner-id">'+
+          '<div class="eyebrow">Mejor ruta ahora mismo</div>'+
+          '<div class="name">'+escapeHtml(r.name)+'</div>'+
+          '<div class="route">'+escapeHtml(r.station)+' ('+escapeHtml(r.system)+') &rarr; '+escapeHtml(state.cgStation)+', '+escapeHtml(state.cgSystem)+'</div>'+
+        '</div>'+
+        '<div class="winner-extra">'+
+          '<div><div class="num">'+cr(c.profitUnit)+'</div><div class="lbl">por unidad</div></div>'+
+          '<div><div class="num">'+num(c.load)+' t</div><div class="lbl">carga completa</div></div>'+
+          '<div><div class="num">'+cr(c.tripProfit)+'</div><div class="lbl">por viaje</div></div>'+
+        '</div>'+
+        '<div class="winner-stat"><div class="num">'+cr(c.perHour)+'</div><div class="lbl">créditos / hora</div></div>';
+    } else {
+      winnerCard.innerHTML = '<div class="winner-id"><div class="eyebrow">Sin ruta viable</div><div class="name" style="font-size:1.2rem;">Revisa oferta / precios</div></div>';
+    }
+  }
+
+  // Full rebuild: used on load, add row, remove row, reset. Sorts rows by Cr/hora.
+  function render(){
+    state.cargoCap = parseFloat(cargoInput.value) || state.cargoCap;
+    state.cgStation = document.getElementById('cgStation').value;
+    state.cgSystem = document.getElementById('cgSystem').value;
+    state.cgMult = document.getElementById('cgMult').value;
+    document.getElementById('cgHeaderMult').textContent = state.cgMult;
+
+    var order = state.rows.map(function(r,i){ return {r:r, i:i, c:computeRow(r)}; })
+      .sort(function(a,b){
+        if(a.c.viable !== b.c.viable) return a.c.viable ? -1 : 1;
+        return b.c.perHour - a.c.perHour;
+      });
+
+    var bestIdx = order.length && order[0].c.viable ? order[0].i : -1;
+
+    tbody.innerHTML = "";
+    order.forEach(function(item){
+      var r = item.r, c = item.c, i = item.i;
+      var tr = document.createElement('tr');
+      tr.setAttribute('data-idx', i);
+      if(i === bestIdx) tr.className = 'best';
+      else if(!c.viable) tr.className = 'nonviable';
+
+      var distTag = r.sameSystem
+        ? '<span class="tag same">mismo sistema</span>'
+        : (r.distLy>0 ? '<span class="tag jump">'+r.distLy.toFixed(2)+' LY</span>' : '<span class="tag jump">&mdash;</span>');
+
+      var supplyTag = (r.supply && r.supply < state.cargoCap)
+        ? ' <span class="tag low">oferta baja</span>' : '';
+
+      tr.innerHTML =
+        '<td class="name-cell">'+(i===bestIdx?'<span class="rank">1</span>':'')+'<input data-field="name" value="'+escapeHtml(r.name)+'"></td>'+
+        '<td class="station-cell"><input data-field="station" value="'+escapeHtml(r.station)+'"></td>'+
+        '<td class="system-cell"><span class="sys-wrap"><input data-field="system" value="'+escapeHtml(r.system)+'">'+
+          '<button class="copy-btn" type="button" data-copy-sys title="Copiar nombre del sistema">'+COPY_ICON+'</button></span></td>'+
+        '<td class="dist-cell">'+distTag+'</td>'+
+        '<td class="supply-cell"><input data-field="supply" type="number" value="'+(r.supply||0)+'"> t<span class="supply-tag">'+supplyTag+'</span></td>'+
+        '<td><input data-field="buy" type="number" value="'+(r.buy||0)+'"></td>'+
+        '<td><input data-field="sell" type="number" value="'+(r.sell||0)+'"></td>'+
+        '<td class="mono out-profitUnit">'+cr(c.profitUnit)+'</td>'+
+        '<td class="mono out-load">'+num(c.load)+' t</td>'+
+        '<td class="mono out-tripProfit">'+cr(c.tripProfit)+'</td>'+
+        '<td><input data-field="tripMin" type="number" value="'+(r.tripMin||0)+'"></td>'+
+        '<td class="mono profit-per-hour out-perHour">'+cr(c.perHour)+'</td>'+
+        '<td><button class="rm-btn" title="Eliminar fila" data-remove="'+i+'">&#10005;</button></td>';
+
+      tbody.appendChild(tr);
+    });
+
+    updateWinner(bestIdx);
+    saveState();
+  }
+
+  // Light update: used while typing in a row. Updates derived numbers + highlight in place,
+  // WITHOUT rebuilding <tr> elements, so focus/caret in the edited input is preserved.
+  function recomputeInPlace(){
+    var best = bestIndex();
+    Array.from(tbody.querySelectorAll('tr')).forEach(function(tr){
+      var idx = parseInt(tr.getAttribute('data-idx'), 10);
+      var r = state.rows[idx];
+      if(!r) return;
+      var c = computeRow(r);
+      tr.querySelector('.out-profitUnit').textContent = cr(c.profitUnit);
+      tr.querySelector('.out-load').textContent = num(c.load) + ' t';
+      tr.querySelector('.out-tripProfit').textContent = cr(c.tripProfit);
+      tr.querySelector('.out-perHour').textContent = cr(c.perHour);
+      var supplyTagEl = tr.querySelector('.supply-tag');
+      if(supplyTagEl) supplyTagEl.innerHTML = (r.supply && r.supply < state.cargoCap) ? ' <span class="tag low">oferta baja</span>' : '';
+      tr.classList.toggle('best', idx === best);
+      tr.classList.toggle('nonviable', !c.viable);
+      var rankEl = tr.querySelector('.rank');
+      if(idx === best && !rankEl){
+        tr.querySelector('.name-cell').insertAdjacentHTML('afterbegin', '<span class="rank">1</span>');
+      } else if(idx !== best && rankEl){
+        rankEl.remove();
+      }
+    });
+    updateWinner(best);
+    saveState();
+  }
+
+  // events
+  cargoInput.addEventListener('input', recomputeInPlace);
+  document.getElementById('cgStation').addEventListener('input', function(){ state.cgStation=this.value; updateWinner(bestIndex()); saveState(); });
+  document.getElementById('cgSystem').addEventListener('input', function(){ state.cgSystem=this.value; updateWinner(bestIndex()); saveState(); });
+  document.getElementById('cgMult').addEventListener('input', function(){ state.cgMult=this.value; document.getElementById('cgHeaderMult').textContent = this.value; saveState(); });
+
+  tbody.addEventListener('input', function(e){
+    var field = e.target.getAttribute('data-field');
+    if(!field) return;
+    var tr = e.target.closest('tr');
+    var idx = parseInt(tr.getAttribute('data-idx'), 10);
+    var row = state.rows[idx];
+    if(!row) return;
+    if(field==='name' || field==='station' || field==='system') row[field] = e.target.value;
+    else row[field] = parseFloat(e.target.value) || 0;
+    recomputeInPlace();
+  });
+
+  document.getElementById('addRowBtn').addEventListener('click', function(){
+    state.rows.push({name:"Nuevo material", station:"Estación", system:"Sistema", distLy:0, sameSystem:true, supply:0, buy:0, sell:0, tripMin:12});
+    render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(confirm('¿Restablecer la tabla a los datos de esta CG (Wreaken / Metz Enterprise)? Se perderán tus ediciones.')){
+      state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      cargoInput.value = state.cargoCap;
+      document.getElementById('cgStation').value = state.cgStation;
+      document.getElementById('cgSystem').value = state.cgSystem;
+      document.getElementById('cgMult').value = state.cgMult;
+      render();
+    }
+  });
+
+  tbody.addEventListener('click', function(e){
+    var rmBtn = e.target.closest('[data-remove]');
+    if(rmBtn){
+      var idx = parseInt(rmBtn.getAttribute('data-remove'), 10);
+      state.rows.splice(idx, 1);
+      render();
+      return;
+    }
+    var copyBtn = e.target.closest('[data-copy-sys]');
+    if(copyBtn){
+      var sysInput = copyBtn.parentElement.querySelector('input[data-field="system"]');
+      var text = sysInput ? sysInput.value : '';
+      copyToClipboard(text).then(function(){
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = CHECK_ICON;
+        setTimeout(function(){
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = COPY_ICON;
+        }, 1200);
+      }).catch(function(){});
+    }
+  });
+
+  // initial paint
+  cargoInput.value = state.cargoCap;
+  document.getElementById('cgStation').value = state.cgStation;
+  document.getElementById('cgSystem').value = state.cgSystem;
+  document.getElementById('cgMult').value = state.cgMult;
+  render();
+
+})();
+</script>
+
+</body></html>
